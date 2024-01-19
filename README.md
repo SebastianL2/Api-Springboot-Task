@@ -11,8 +11,8 @@ La API está alojada en [Supabase](https://supabase.io/) como un microservicio u
 ## Ejecución Local
 
 ### Requisitos Previos
-- [Node.js](https://nodejs.org/) instalado
-- [npm](https://www.npmjs.com/) (gestor de paquetes de Node.js) instalado
+- [Java](https://www.java.com/) instalado
+- [Maven](https://maven.apache.org/) instalado
 
 ### Pasos
 
