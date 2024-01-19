@@ -19,6 +19,7 @@ La API está alojada en [Supabase](https://supabase.io/) como un microservicio u
 1. **Clona el repositorio:**
    ```bash
    git clone https://github.com/sebastiancely/task-manager-api.git
-
+  ```bash
    PORT=8081
-   LOCALHOST:http://localhost:8081/t
+
+    LOCALHOST:http://localhost:8081/
