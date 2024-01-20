@@ -55,9 +55,9 @@ public class ControlComents {
 
 
             coment1.updateComents(existingComents);
-            return new ResponseEntity<>("Empleado actualizado correctamente", HttpStatus.CREATED);
+            return new ResponseEntity<>("Comentario actualizado correctamente", HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>("Empleado no encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Comentario no encontrado", HttpStatus.NOT_FOUND);
         }
     }
     @GetMapping("/find/{id}")
@@ -68,7 +68,7 @@ public class ControlComents {
 
             return new ResponseEntity<>(existingComents, HttpStatus.FOUND);
         } else {
-            return new ResponseEntity<>("Empleado no encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Comentario no encontrado", HttpStatus.NOT_FOUND);
         }
     }
 
