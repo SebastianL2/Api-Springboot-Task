@@ -1,8 +1,10 @@
 package com.apiprjctport.Controllers;
 
 import com.apiprjctport.Entities.Employee;
+import com.apiprjctport.Entities.Project;
 import com.apiprjctport.Services.ServiceEmployee;
 import jakarta.persistence.EntityNotFoundException;
+import org.hibernate.Hibernate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,21 @@ public class ControlEmployee {
     }
     @GetMapping("/all")
     public List<Employee> info(){
+
         return  this.sem1.getRepository();
+
     }
+    @GetMapping("/getEmployees/{employeeId}")
+    public ResponseEntity<Employee> getEmployeeWithTasks(@PathVariable Long employeeId) {
+        Optional<Employee> employee = sem1.findById(employeeId);
+
+        if (employee.isPresent()) {
+            return ResponseEntity.ok(employee.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Employee info(@RequestBody Employee emp){
@@ -70,5 +85,30 @@ public class ControlEmployee {
             return new ResponseEntity<>("Empleado no encontrado", HttpStatus.NOT_FOUND);
         }
     }
+    @PutMapping("/{employee_id}/project/{task_id}")
+    public Employee assignProjectToEmployee(
+            @PathVariable Long employee_id,
+            @PathVariable Long task_id
+    ){
+        return sem1.assignProjectToEmployee(employee_id, task_id);
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+        Optional<Employee> employee = sem1.findById(id);
+
+        if (employee.isPresent()) {
+            Employee employeeData = employee.get();
+
+            // Verificar si assignedTask no está vacío
+            if (!employeeData.getAssignedTask().isEmpty()) {
+                return ResponseEntity.ok(employeeData);
+            } else {
+                // Puedes devolver un ResponseEntity indicando que assignedTask está vacío
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body(employeeData);
+            }
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

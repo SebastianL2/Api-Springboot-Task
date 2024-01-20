@@ -1,11 +1,10 @@
 package com.apiprjctport.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Data
@@ -36,6 +35,9 @@ public class Task {
     @JoinColumn(name = "fk_employee_id",referencedColumnName = "task_id")
     private List<Employee> employeeList;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "assignedTask")
+    private List<Employee>employeeSet;
 
 
 }

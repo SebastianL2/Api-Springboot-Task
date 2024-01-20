@@ -89,11 +89,7 @@ public class ControlTask {
         if (optionalProject.isPresent()) {
             Task task = optionalProject.get();
             List<Employee> employees = task.getEmployeeList();
-
-            // Agregar la nueva tarea a la lista de tareas del proyecto
             employees.add(newEmployee);
-
-            // Actualizar el proyecto en la base de datos
             task1.createTask(task);
 
             return new ResponseEntity<>(task, HttpStatus.OK);

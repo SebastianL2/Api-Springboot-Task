@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Entity
 @Data
 @Table(name="Project")
@@ -26,7 +29,6 @@ public class Project {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_coment_id",referencedColumnName = "project_id")
     private List<Coments> comentsList;
-
 
 
 }
